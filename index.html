@@ -449,7 +449,7 @@
                 const option = document.createElement('div');
                 option.className = 'overlay-option';
                 option.innerHTML = `
-                    <img src="${overlay}" alt="${overlay}">
+                    <img src="${overlay}" alt="${overlay}" crossOrigin="Anonymous">
                 `;
                 option.addEventListener('click', () => {
                     // Remove selected class from all options
@@ -479,6 +479,7 @@
                 const reader = new FileReader();
                 reader.onload = function(event) {
                     const img = new Image();
+                    img.crossOrigin = "Anonymous"; // Enable CORS for the image
                     img.onload = function() {
                         currentImage = img;
                         renderImage();
@@ -503,6 +504,7 @@
             
             // Use our server endpoint to fetch the Twitter profile picture
             const img = new Image();
+            img.crossOrigin = "Anonymous"; // Enable CORS for the image
             img.onload = function() {
                 currentImage = img;
                 twitterStatus.textContent = 'Profile picture loaded successfully!';
@@ -604,6 +606,7 @@ Respectfully,
             // Draw bill overlay if enabled
             if (billToggle.checked) {
                 const billImg = new Image();
+                billImg.crossOrigin = "Anonymous"; // Enable CORS for the image
                 billImg.onload = function() {
                     // Set opacity for bill overlay (0.7 = 70% opacity)
                     ctx.globalAlpha = 0.7;
@@ -613,6 +616,7 @@ Respectfully,
                     // Draw selected overlay if one is chosen
                     if (selectedOverlay) {
                         const overlayImg = new Image();
+                        overlayImg.crossOrigin = "Anonymous"; // Enable CORS for the image
                         overlayImg.onload = function() {
                             ctx.drawImage(overlayImg, 0, 0, canvas.width, canvas.height);
                             downloadBtn.disabled = false;
@@ -626,6 +630,7 @@ Respectfully,
             } else if (selectedOverlay) {
                 // Draw selected overlay if bill is not enabled
                 const overlayImg = new Image();
+                overlayImg.crossOrigin = "Anonymous"; // Enable CORS for the image
                 overlayImg.onload = function() {
                     ctx.drawImage(overlayImg, 0, 0, canvas.width, canvas.height);
                     downloadBtn.disabled = false;
@@ -643,6 +648,7 @@ Respectfully,
             
             // Load default image
             const defaultImg = new Image();
+            defaultImg.crossOrigin = "Anonymous"; // Enable CORS for the image
             defaultImg.onload = function() {
                 currentImage = defaultImg;
                 // Set selected overlay to the first one by default
